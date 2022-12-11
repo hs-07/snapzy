@@ -2,26 +2,30 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Logo from '../assets/logo.png';
 
-export default function Contacts({ contacts, currentUser }) {
+export default function Contacts({ contacts, currentUser, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
 
   useEffect(() => {
     if(currentUser)
-    {setCurrentUserName(currentUser.username);
-    setCurrentUserImage(currentUser.avatarImage);
+    {
+      setCurrentUserImage(currentUser.avatarImage);
+      setCurrentUserName(currentUser.username);
+    
 }
   }, [currentUser]);
 
 
   const changeCurrentChat = (index, contact) => {
+    setCurrentSelected(index);
+    changeChat(contact);
   };
 
 
   return (
     <>
-      {currentUserImage && currentUserImage && (
+      {currentUserImage && currentUserName && (
         <Container>
           <div className="brand">
             <img src={Logo} alt="logo" />
@@ -32,7 +36,7 @@ export default function Contacts({ contacts, currentUser }) {
             {contacts.map((contact, index) => {
               return (
                 <div
-                  key={contact._id}
+                  key={index}
                   className={`contact ${
                     index === currentSelected ? "selected" : ""
                   }`}
@@ -41,7 +45,7 @@ export default function Contacts({ contacts, currentUser }) {
                   <div className="avatar">
                     <img
                       src={`data:image/svg+xml;base64,${contact.avatarImage}`}
-                      alt=""
+                      alt="avatar"
                     />
                   </div>
                   <div className="username">
