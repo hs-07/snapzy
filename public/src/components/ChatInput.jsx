@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import Picker, {Theme} from 'emoji-picker-react';
-import {IoMdSend} from 'react-icons/io';
+import {IoMdSend, IoMdWarning} from 'react-icons/io';
 import {BsEmojiSmileFill} from 'react-icons/bs';
 
-export default function ChatInput() {
+export default function ChatInput({handleSendMsg}) {
+   
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
     const [msg, setMsg] = useState("");
 
@@ -14,10 +15,18 @@ export default function ChatInput() {
 
     const handleEmojiClick = (event, emoji) => {
         let message = msg;
-        message += emoji.emoji;
+        message = message + emoji.emoji;
         setMsg( message);
     
     };
+
+    const sendChat = (event) => {
+        event.preventDefault();
+        if(msg.length>0){
+            handleSendMsg(msg);
+            setMsg(" ");
+        }
+    }
     
 
   return (
@@ -31,7 +40,7 @@ export default function ChatInput() {
             </div>
         </div>
 
-        <form className="input-container">
+        <form className="input-container" onSubmit={(e)=>sendChat(e)}>
             <input type="text" placeholder="Type your message here" value={msg} onChange={(e) => setMsg(e.target.value)} />
             <button className="submit">
                 <IoMdSend/>
@@ -65,6 +74,30 @@ padding-bottom: 0.3rem;
             width: 288px !important;
             position: absolute;
             top: -350px;
+            background-color: #080420;
+            box-shadow: 0 5px 10px #9a86f3;
+            border-color: #9a86f3;
+            .emoji-scroll-wrapper::-webkit-scrollbar{
+                background-color: #080420 !important;
+                width: 5px !important;
+                display: hidden;
+                &-thumb{
+                    background-color: #9186f3 !important;
+                }
+            }
+            .emoji-categories {
+                button{
+                    filter: contrast(0);
+                }
+            }
+            .epr-search{
+                backgroung-color: transparent;
+                border-color: #9186f3;
+
+            }
+            .emoji-group:before {
+                background-color: #080420;
+            }
         }
     }
     
