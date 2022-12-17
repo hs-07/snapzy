@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+mongoose.set('strictQuery', true);
+
 const messageSchema = new mongoose.Schema(
 {
     message:{
