@@ -1,5 +1,6 @@
 
-# snapzy 
+# snapzy  <img src="https://user-images.githubusercontent.com/87127387/208757233-8c0f3853-2e71-4a98-a38c-fabc190e8029.png" width="30"> 
+
 
 REAL-TIME Chat Application.
 
