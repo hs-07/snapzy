@@ -52,6 +52,10 @@ Start the server
 ## Screenshots
 
 
+![PicsArt_01-30-12 08 38](https://user-images.githubusercontent.com/87127387/215348536-1f14875e-4321-4756-8f2e-b7963f2ae558.jpg)
+
+
+
 ## File Structure as follows
 ```
 public
